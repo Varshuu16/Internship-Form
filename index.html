@@ -13,44 +13,48 @@
     <div class="container">
         <div class="title">Internship Certificate Form</div>
         <form>
-            <div class="user-details">
-                <div class="input-box">
-                    <span class="details">Full Name</span>
-                    <input type="text" id="name" placeholder="Enter your name" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Start Date</span>
-                    <input type="date" id="start" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">End Date</span>
-                    <input type="date" id="end" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Domain</span>
-                    <input type="text" id="domain" placeholder="Enter domain" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Gender</span>
-                    <select id="gender" required>
-                        <option value="" disabled selected>Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-                <div class="input-box">
-                    <span class="details">Proficiency</span>
-                    <select id="proficiency" required>
-                        <option value="" disabled selected>Select</option>
-                        <option value="fundamental">Fundamental Understanding</option>
-                        <option value="working">Working Proficiency</option>
-                        <option value="professional">Professional Proficiency</option>
-                    </select>
-                </div>
+            <div class="user-details" id="user-details">
+    <div class="input-box">
+        <span class="details">Full Name</span>
+        <input type="text" id="name" placeholder="Enter your name" required>
+    </div>
+    <div class="input-box">
+        <span class="details">Start Date</span>
+        <input type="date" id="start" required>
+    </div>
+    <div class="input-box">
+        <span class="details">End Date</span>
+        <input type="date" id="end" required>
+    </div>
+    <div class="input-box">
+        <span class="details">Gender</span>
+        <select id="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+    <div class="input-box">
+        <span class="details">Domain</span>
+        <input type="text" id="domain" name="domain" placeholder="Enter domain" required>
+    </div>
+            <div class="input-box">
+                <span class="details">Proficiency</span>
+                <select name="proficiency" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="fundamental">Fundamental Understanding</option>
+                    <option value="working">Working Proficiency</option>
+                    <option value="professional">Professional Proficiency</option>
+                </select>
             </div>
-            <div class="button">
-                <input type="button" value="Generate Certificate" onclick="generateCertificate()">
-            </div>
+        </div>
+        <div class="butt">
+            <input type="button" value="Add Domain" onclick="addDomainField()" />
+        </div>
+        <div class="button">
+            <input type="button" value="Generate Certificate" onclick="generateCertificate()">
+        </div>
+        </div>
         </form>
     </div>
 

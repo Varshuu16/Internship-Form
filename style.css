@@ -63,6 +63,18 @@
             font-weight: 500;
             margin-bottom: 5px;
         }
+        form .butt{
+            height: 30px;
+            
+
+        }
+
+        form .butt input{
+            height: 100%;
+            width: 100%;
+            
+        }
+
         form .button {
             height: 45px;
             margin: 35px 0;

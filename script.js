@@ -1,4 +1,3 @@
-
 function generateCertificate() {
     const name = document.getElementById("name").value;
     const start = new Date(document.getElementById("start").value);
@@ -67,3 +66,29 @@ document.getElementById('proficiency').addEventListener('change', function () {
     badgeImage.style.display = 'none';
   }
 });
+
+function addDomainField() {
+    const container = document.getElementById('user-details');
+
+    const domainBox = document.createElement('div');
+    domainBox.className = 'input-box';
+    domainBox.innerHTML = `
+        <span class="details">Domain</span>
+        <input type="text" name="domain" placeholder="Enter domain" required>
+    `;
+
+    const proficiencyBox = document.createElement('div');
+    proficiencyBox.className = 'input-box';
+    proficiencyBox.innerHTML = `
+        <span class="details">Proficiency</span>
+        <select name="proficiency" required>
+            <option value="" disabled selected>Select</option>
+            <option value="fundamental">Fundamental Understanding</option>
+            <option value="working">Working Proficiency</option>
+            <option value="professional">Professional Proficiency</option>
+        </select>
+    `;
+
+    container.appendChild(domainBox);
+    container.appendChild(proficiencyBox);
+}
