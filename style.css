@@ -139,6 +139,12 @@
         background-color:rgb(65, 197, 61); 
         color: rgb(65, 197, 61);
         }
+        #certificate {
+        width: 210mm;
+        height: 297mm;
+        position: relative;
+        overflow: hidden;
+        }
 
 
         @media(max-width: 584px) {
