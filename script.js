@@ -12,7 +12,6 @@ function generateCertificate() {
     const domainInputs = document.querySelectorAll('input[name="domain"]');
     const proficiencyInputs = document.querySelectorAll('select[name="proficiency"]');
 
-    // Create domain list with proficiency
     let domainList = [];
     for (let i = 0; i < domainInputs.length; i++) {
         const domain = domainInputs[i].value.trim();
@@ -25,12 +24,10 @@ function generateCertificate() {
 
     const domainListText = domainList.join(", ");
 
-    // Gender-based pronouns
     const pronoun = gender === "male" ? "him" : "her";
     const pronoun2 = gender === "male" ? "his" : "her";
     const title = gender === "male" ? "Mr." : "Ms.";
 
-    // Fill certificate content
     document.getElementById("cert-date").textContent = today;
     document.getElementById("cert-name").textContent = `${title} ${name}`;
     document.getElementById("cert-domains-list").textContent = domainListText;
@@ -55,8 +52,6 @@ function generateCertificate() {
         certificate.style.display = "none";
     });
 }
-
-
 
 function addDomainField() {
     const container = document.getElementById('user-details');
