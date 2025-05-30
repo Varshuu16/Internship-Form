@@ -1,55 +1,57 @@
 function generateCertificate() {
-    const name = document.getElementById("name").value;
-    const start = new Date(document.getElementById("start").value);
-    const end = new Date(document.getElementById("end").value);
-    const gender = document.getElementById("gender").value;
-
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedStart = start.toLocaleDateString("en-US", options);
-    const formattedEnd = end.toLocaleDateString("en-US", options);
-    const today = new Date().toLocaleDateString("en-US", options);
+    const name = document.getElementById('name').value;
+    const start = document.getElementById('start').value;
+    const end = document.getElementById('end').value;
+    const gender = document.getElementById('gender').value;
 
     const domainInputs = document.querySelectorAll('input[name="domain"]');
-    const proficiencyInputs = document.querySelectorAll('select[name="proficiency"]');
+    const proficiencySelects = document.querySelectorAll('select[name="proficiency"]');
 
-    let domainList = [];
+    const domainElements = [];
+
     for (let i = 0; i < domainInputs.length; i++) {
-        const domain = domainInputs[i].value.trim();
-        const proficiency = proficiencyInputs[i].value.trim();
+        const domain = domainInputs[i].value;
+        const proficiency = proficiencySelects[i].value;
 
-        if (domain && proficiency) {
-            domainList.push(`${domain} (${proficiency.charAt(0).toUpperCase() + proficiency.slice(1)} Proficiency)`);
+        let color;
+        switch (proficiency) {
+            case 'fundamental': color = 'orange'; break;
+            case 'working': color = 'blue'; break;
+            case 'professional': color = 'green'; break;
+            default: color = 'black';
         }
+
+        domainElements.push(`<span style="color: ${color}; font-weight: bold;">${domain}</span>`);
     }
 
-    const domainListText = domainList.join(", ");
+    const allDomainsHTML = domainElements.join(', ');
+    document.getElementById('cert-domains-list').innerHTML = allDomainsHTML;
 
-    const pronoun = gender === "male" ? "him" : "her";
-    const pronoun2 = gender === "male" ? "his" : "her";
+    document.getElementById('cert-start').innerText = start;
+    document.getElementById('cert-end').innerText = end;
+
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('cert-date').innerText = dateStr;
+
+    const pronoun = gender === 'male' ? 'him' : 'her';
+    const pronoun2 = gender === 'male' ? 'his' : 'her';
     const title = gender === "male" ? "Mr." : "Ms.";
-
-    document.getElementById("cert-date").textContent = today;
+    document.getElementById('cert-pronoun').innerText = pronoun;
+    document.getElementById('cert-pronoun2').innerText = pronoun2;
     document.getElementById("cert-name").textContent = `${title} ${name}`;
-    document.getElementById("cert-domains-list").textContent = domainListText;
-    document.getElementById("cert-start").textContent = formattedStart;
-    document.getElementById("cert-end").textContent = formattedEnd;
-    document.getElementById("cert-description").textContent =
-        `We found ${pronoun} to be sincere, hardworking, dedicated and result-oriented, while working well as a part of the team. We take this opportunity to congratulate ${pronoun} for completing the internship.`;
-    document.getElementById("cert-pronoun").textContent = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
-    document.getElementById("cert-pronoun2").textContent = pronoun2;
 
-    const certificate = document.getElementById("certificate");
-    certificate.style.display = "block";
+    const certElement = document.getElementById('certificate');
+    certElement.style.display = 'block';
 
-    const opt = {
-        filename:     `${name}-Internship-Certificate.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-    };
-
-    html2pdf().set(opt).from(certificate).save().then(() => {
-        certificate.style.display = "none";
+    html2pdf().set({
+        margin: 0,
+        filename: `${name}_certificate.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }).from(certElement).save().then(() => {
+        certElement.style.display = 'none';
     });
 }
 
