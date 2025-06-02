@@ -15,7 +15,7 @@ function generateCertificate() {
 
         let color;
         switch (proficiency) {
-            case 'fundamental': color = 'orange'; break;
+            case 'fundamental': color = '#d35400'; break;
             case 'working': color = 'blue'; break;
             case 'professional': color = 'green'; break;
             default: color = 'black';
@@ -36,9 +36,13 @@ function generateCertificate() {
 
     const pronoun = gender === 'male' ? 'him' : 'her';
     const pronoun2 = gender === 'male' ? 'his' : 'her';
+    const pronoun3 = gender === 'male' ? 'he' : 'she';
     const title = gender === "male" ? "Mr." : "Ms.";
     document.getElementById('cert-pronoun').innerText = pronoun;
-    document.getElementById('cert-pronoun2').innerText = pronoun2;
+    document.getElementById('cert-pronoun2').innerText = pronoun;
+    document.getElementById('cert-pronoun3').innerText = pronoun3;
+    document.getElementById('cert-pronoun4').innerText = pronoun;
+    document.getElementById('cert-pronoun5').innerText = pronoun2;
     document.getElementById("cert-name").textContent = `${title} ${name}`;
 
     const certElement = document.getElementById('certificate');
