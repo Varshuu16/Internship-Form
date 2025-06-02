@@ -4,6 +4,20 @@ function generateCertificate() {
     const end = document.getElementById('end').value;
     const gender = document.getElementById('gender').value;
 
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+const startDate = new Date(document.getElementById('start').value)
+    .toLocaleDateString('en-US', options)
+    .replace(',', ''); 
+
+const endDate = new Date(document.getElementById('end').value)
+    .toLocaleDateString('en-US', options)
+    .replace(',', '');
+
+document.getElementById('cert-start').textContent = startDate;
+document.getElementById('cert-end').textContent = endDate;
+
+
     const domainInputs = document.querySelectorAll('input[name="domain"]');
     const proficiencySelects = document.querySelectorAll('select[name="proficiency"]');
 
@@ -27,8 +41,8 @@ function generateCertificate() {
     const allDomainsHTML = domainElements.join(', ');
     document.getElementById('cert-domains-list').innerHTML = allDomainsHTML;
 
-    document.getElementById('cert-start').innerText = start;
-    document.getElementById('cert-end').innerText = end;
+    document.getElementById('cert-start').innerText = startDate;
+    document.getElementById('cert-end').innerText = endDate;
 
     const today = new Date();
     const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
