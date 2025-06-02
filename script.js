@@ -17,6 +17,12 @@ const endDate = new Date(document.getElementById('end').value)
 document.getElementById('cert-start').textContent = startDate;
 document.getElementById('cert-end').textContent = endDate;
 
+const dateStr = new Date(document.getElementById('date').value)
+    .toLocaleDateString('en-US', options)
+    .replace(',', ',');
+
+    document.getElementById('cert-date').innerText = dateStr;
+
 
     const domainInputs = document.querySelectorAll('input[name="domain"]');
     const proficiencySelects = document.querySelectorAll('select[name="proficiency"]');
@@ -44,9 +50,7 @@ document.getElementById('cert-end').textContent = endDate;
     document.getElementById('cert-start').innerText = startDate;
     document.getElementById('cert-end').innerText = endDate;
 
-    const today = new Date();
-    const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    document.getElementById('cert-date').innerText = dateStr;
+    
 
     const pronoun = gender === 'male' ? 'him' : 'her';
     const pronoun2 = gender === 'male' ? 'his' : 'her';
@@ -62,15 +66,24 @@ document.getElementById('cert-end').textContent = endDate;
     const certElement = document.getElementById('certificate');
     certElement.style.display = 'block';
 
-    html2pdf().set({
-        margin: 0,
-        filename: `${name}_certificate.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    }).from(certElement).save().then(() => {
-        certElement.style.display = 'none';
-    });
+   html2canvas(certElement, {
+  scale: 2,       // boosts resolution
+  width: 794,     // enforce A4 width
+  height: 1123    // enforce A4 height
+}).then(canvas => {
+  const image = canvas.toDataURL("image/png");
+  const link = document.createElement('a');
+  link.href = image;
+  link.download = `${name}_certificate.png`;
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  certElement.style.display = 'none';
+});
+
+
 }
 
 function addDomainField() {

@@ -13,6 +13,8 @@
             padding: 20px;
             background: linear-gradient(135deg, #7d7acf, #fcfafd);
         }
+
+        
         .container {
             max-width: 700px;
             background-color: #ffffff;
@@ -126,12 +128,20 @@
 .orange-dot { background-color: rgb(35, 83, 205); }
 .yellow-dot { background-color: rgb(44, 165, 50); }
 
-        #certificate {
-        width: 210mm;
-        height: 297mm;
+         #certificate {
+        width: 794px;
+  height: 1123px;
         position: relative;
         overflow: hidden;
-        }
+        } 
+
+/* #certificate {
+  width: 794px;
+  height: 1123px;
+  padding: 40px;
+  background: white;
+  box-sizing: border-box;
+} */
 
 
         @media(max-width: 584px) {
